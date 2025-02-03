@@ -122,10 +122,19 @@ class NComposition:
             self.winstates.append(winstate)
     
     def check(self, input):
+        # return longest substring of input that matches a winstate
+        max_overlap = 0
+        match = False
         for winstate in self.winstates:
-            if winstate in input:
-                return True
-        return False
+            for i in range(len(winstate)):
+                if winstate[i:] in input:
+                    max_overlap = max(max_overlap, len(winstate[i:]) / len(winstate))
+                    
+                    # complete match
+                    if i == 0:
+                        return 1, True
+        
+        return max_overlap, False
 
 if __name__ == "__main__":
    tree = NComposition(composition_depth = 3, n_unique_elements = 5, n_syms = 10, 

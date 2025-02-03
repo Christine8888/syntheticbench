@@ -65,7 +65,3 @@ class Model:
             auroc = roc_auc_score(labels_np, scores_np)
 
         return classifier, auroc
-
-if __name__ == "__main__":
-    qwen = Model("Qwen/Qwen2.5-0.5B-Instruct")
-    qwen.generate_text("""Generate a string using only characters from ['5', 'C', 'A', '4', 'W']. <start> """, max_length=100, do_sample=True, temperature=0.5)
